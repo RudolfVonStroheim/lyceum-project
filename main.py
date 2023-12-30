@@ -37,6 +37,9 @@ class Main(QMainWindow):
         self.switch_right_btn.clicked.connect(self.switch_right)
         self.player.error.connect(self.handle_error)
 
+    def init_proxy(self):
+        pass
+
     def change_settings(self):
         settings = SettingsWindow()
         settings.exec_()
