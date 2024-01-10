@@ -5,10 +5,6 @@ from PyQt5.uic import loadUi
 from sys import argv, exit
 from add import AddWindow
 from choose import ChooseWindow
-from json import load
-from settings import SettingsWindow
-import socks
-import socket
 
 
 class Main(QMainWindow):
@@ -37,28 +33,9 @@ class Main(QMainWindow):
         self.switch_right_btn.clicked.connect(self.switch_right)
         self.player.error.connect(self.handle_error)
 
-    def init_proxy(self):
-        pass
-
-    def change_settings(self):
-        settings = SettingsWindow()
-        settings.exec_()
-        self.update_settings()
-
-    def start_record(self):
-        pass
-
     def sync(self):
         self.player.stop()
         self.set()
-
-    def update_settings(self):
-        with open('settings.json', 'r') as sett_file:
-            settings = load(sett_file)
-        self.ip = settings['ip']
-        self.port = settings['port']
-        self.save_dir = settings['dir']
-        self.init_proxy()
 
     def handle_error(self, error):
         msg = QMessageBox()
